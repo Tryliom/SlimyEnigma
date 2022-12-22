@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Checkpoint
+  - Danger
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 894736251
+    locked: 0
+  - name: Upperfloor
+    uniqueID: 3710653317
     locked: 0
   - name: Foreground
     uniqueID: 2765799433
