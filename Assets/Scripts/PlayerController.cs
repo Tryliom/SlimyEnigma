@@ -6,14 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _speed = 5f;
     [SerializeField] private CheckpointManager _checkpointManager;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject _maskProjectilePrefab;
 
     private Vector2 _moveValue;
-
     private Vector3 _lastCheckpoint;
+    
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidbody2D;
+    private BoxCollider2D _boxCollider2D;
 
     private static readonly int Walking = Animator.StringToHash("Walking");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -60,6 +66,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Danger") && !_animator.GetBool(IsDead))
+        {
+            Die();
+        }
+    }
+
     public void HandleMove(InputAction.CallbackContext context)
     {
         _moveValue = Vector2.zero;
@@ -91,6 +105,8 @@ public class PlayerController : MonoBehaviour
     
     public void HandleAttack(InputAction.CallbackContext context)
     {
+        if (_maskProjectilePrefab == null) return;
+        
         if (context.performed)
         {
             //_spriteRenderer.color = Color.red;
@@ -105,12 +121,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void Test(InputAction.CallbackContext context)
-    {
-        SetDead();
-    }
-    
-    private void SetDead()
+    private void Die()
     {
         if (!_animator.GetBool(IsDead))
         {
@@ -118,7 +129,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool(IsDead, true);
             
             // Disable the player collider
-            GetComponent<Collider2D>().enabled = false;
+            _boxCollider2D.enabled = false;
             
             _lastCheckpoint = _checkpointManager.GetLastCheckpoint();
         }
@@ -132,12 +143,51 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void RespawnComplete()
+    private void RespawnComplete()
     {
         _animator.SetBool(Respawning, false);
         _animator.SetBool(IsDead, false);
         
-        GetComponent<Collider2D>().enabled = true;
+        _boxCollider2D.enabled = true;
         transform.rotation = Quaternion.identity;
+    }
+    
+    public void LaunchAttack()
+    {
+        var position = transform.position;
+
+        // Get mouse direction
+        var mousePosition = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        var direction = mousePosition - position;
+        
+        // If the direction is to the left, flip the sprite
+        if (direction.x < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else
+        {
+            _spriteRenderer.flipX = false;
+        }
+        
+        // Get the position at the end of the player box collider, depend of the direction
+        var colliderSize = _boxCollider2D.size;
+        var colliderOffset = _boxCollider2D.offset;
+        var colliderPosition = new Vector3(colliderOffset.x, colliderOffset.y, 0f);
+        colliderPosition += new Vector3(colliderSize.x / 2f, colliderSize.y / 2f, 0f);
+        colliderPosition *= _spriteRenderer.flipX ? -1f : 1f;
+        colliderPosition += position;
+        
+        // Create the projectile
+        var projectile = Instantiate(_maskProjectilePrefab, colliderPosition, Quaternion.identity);
+        
+        // Get the angle of the mouse direction
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Calculate the direction of the projectile from -1 to 1
+        var projectileDirection = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+
+        projectile.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
+        projectile.GetComponent<MaskProjectileController>().SetDirection(projectileDirection);
     }
 }

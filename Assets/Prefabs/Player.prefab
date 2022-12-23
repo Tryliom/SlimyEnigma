@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3437383486553464988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5171498, y: 0.24388146, z: -0.029754639}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,21 +95,25 @@ MonoBehaviour:
     m_ActionId: ba7584d3-5279-4da6-8497-faa5dd6b299d
     m_ActionName: DungeonHero/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 400dacb9-535f-42db-aab6-c8b0cb6ee826
+    m_ActionName: DungeonHero/Test[/Keyboard/e]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6260298994667003066}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: Test
-        m_Mode: 0
+        m_MethodName: Respawn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Dead
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 400dacb9-535f-42db-aab6-c8b0cb6ee826
-    m_ActionName: DungeonHero/Test[/Keyboard/e]
+    m_ActionId: 25a26974-7afb-468c-a341-2b4392030c4a
+    m_ActionName: DungeonHero/Respawn[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: DungeonHero
@@ -154,7 +158,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1529167863
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 154597659, guid: 04a32c998586cf5418188eb74f8af996, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -179,9 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7603fb4184dccf54f87676551179599e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 4902292373338157660}
-  _spriteRenderer: {fileID: 4774998917492637372}
   _speed: 5
+  _checkpointManager: {fileID: 0}
+  _camera: {fileID: 0}
+  _maskProjectilePrefab: {fileID: 9072870675644222524, guid: 22abbf32e06c4284fb8ae957c1ecbc7c, type: 3}
 --- !u!95 &4902292373338157660
 Animator:
   serializedVersion: 4

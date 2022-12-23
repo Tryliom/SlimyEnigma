@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3c5bf12e272bee848bfea71c49185405
+guid: be916ae387486054fb99e922d5fcf277
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,35 +102,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,7 +117,154 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: respawning_0
+      name: mask_throw_projectile_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263b9b0bc65b6934abbb84ac40f76d44
+      internalID: -599294768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3efef26a8b3bde48bbc76dc207730af
+      internalID: -2082506442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a7aef2789c8ed54781886734692022a
+      internalID: -380057475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50a58657eaa25d940bc75cb502364c37
+      internalID: -1211370025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7eca1be17c7cf4d99849a10f2a46b5
+      internalID: 928207727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa9a87bcbc2099740bae6ac940adb084
+      internalID: 709340325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ccc8e57d519314bacbcca28e6563ec
+      internalID: 1105108489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_throw_projectile_7
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 826c4e96917b829418840df0ace47051
-      internalID: -994771738
+      spriteID: 1dc3af0be6181424ea4d8eb50d66e627
+      internalID: -1152514059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: respawning_1
+      name: mask_throw_projectile_8
       rect:
         serializedVersion: 2
         x: 0
@@ -176,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5db9e869236ad5e4ab4e706c601fe0df
-      internalID: 2084816799
+      spriteID: 6729c2c1e1f85944b952b87aa75fd71d
+      internalID: -1068822203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: respawning_2
+      name: mask_throw_projectile_9
       rect:
         serializedVersion: 2
         x: 0
@@ -197,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fa8bdc06951a3f4b80db010234bceec
-      internalID: -2138208282
+      spriteID: fcc813f134008c040b3fc72a501d0e29
+      internalID: -715110859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: respawning_3
+      name: mask_throw_projectile_10
       rect:
         serializedVersion: 2
         x: 0
@@ -218,8 +341,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d676b6c6ab8e8428b62ff14f92fd8e
-      internalID: -1758488310
+      spriteID: 4106c0163bb88da47b959977a385119f
+      internalID: -466454922
       vertices: []
       indices: 
       edges: []
@@ -235,10 +358,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      respawning_0: -994771738
-      respawning_3: -1758488310
-      respawning_1: 2084816799
-      respawning_2: -2138208282
+      mask_throw_projectile_5: 709340325
+      mask_throw_projectile_0: -599294768
+      mask_throw_projectile_2: -380057475
+      mask_throw_projectile_6: 1105108489
+      mask_throw_projectile_9: -715110859
+      mask_throw_projectile_8: -1068822203
+      mask_throw_projectile_7: -1152514059
+      mask_throw_projectile_10: -466454922
+      mask_throw_projectile_4: 928207727
+      mask_throw_projectile_1: -2082506442
+      mask_throw_projectile_3: -1211370025
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
