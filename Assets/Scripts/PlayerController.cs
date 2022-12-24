@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
 
     private static readonly int Walking = Animator.StringToHash("Walking");
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 

@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private Sprite _disabledSprite;
 
     private CheckpointManager _checkpointManager;
+    private SpriteRenderer _spriteRenderer;
     
     private bool _isCheckpointActive;
     
@@ -17,6 +18,7 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         _checkpointManager = GetComponentInParent<CheckpointManager>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _isCheckpointActive = false;
     }
 
@@ -31,13 +33,14 @@ public class Checkpoint : MonoBehaviour
     public void SetCheckpointActive(bool isActive)
     {
         _isCheckpointActive = isActive;
+        
         if (isActive)
         {
-            GetComponent<SpriteRenderer>().sprite = _enabledSprite;
+            _spriteRenderer.sprite = _enabledSprite;
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = _disabledSprite;
+            _spriteRenderer.sprite = _disabledSprite;
         }
     }
 }

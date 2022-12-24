@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa97cc63154cb74e8f9a395f8d08245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enabledSprite: {fileID: 1797364330, guid: f744db897e349f842bc1e49accac10e2, type: 3}
-  _disabledSprite: {fileID: -119672627, guid: f744db897e349f842bc1e49accac10e2, type: 3}
+  _enabledSprite: {fileID: -119672627, guid: f744db897e349f842bc1e49accac10e2, type: 3}
+  _disabledSprite: {fileID: 1797364330, guid: f744db897e349f842bc1e49accac10e2, type: 3}
 --- !u!61 &3538661029000720049
 BoxCollider2D:
   m_ObjectHideFlags: 0

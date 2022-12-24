@@ -40,7 +40,7 @@ public class CheckpointManager : MonoBehaviour
     {
         foreach (var checkpoint in _checkpoints)
         {
-            if (checkpoint.transform.position != _lastCheckpoint)
+            if (_lastCheckpoint.Equals(checkpoint.transform.position))
             {
                 checkpoint.SetCheckpointActive(true);
             }
