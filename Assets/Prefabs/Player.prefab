@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5005117255408222342}
   - component: {fileID: 4263607095157979318}
   - component: {fileID: 4774998917492637372}
+  - component: {fileID: 5694463388037397876}
   - component: {fileID: 6260298994667003066}
   - component: {fileID: 4902292373338157660}
   - component: {fileID: 5134283270087528752}
@@ -171,6 +172,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5694463388037397876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437383486553464988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 584ee7e487288d147ac485cb8ae7216e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
 --- !u!114 &6260298994667003066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,10 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7603fb4184dccf54f87676551179599e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _checkpointManager: {fileID: 0}
-  _camera: {fileID: 0}
-  _maskProjectilePrefab: {fileID: 9072870675644222524, guid: 22abbf32e06c4284fb8ae957c1ecbc7c, type: 3}
+  speed: 5
+  checkpointManager: {fileID: 0}
+  mainCamera: {fileID: 0}
+  maskProjectilePrefab: {fileID: 9072870675644222524, guid: 22abbf32e06c4284fb8ae957c1ecbc7c, type: 3}
 --- !u!95 &4902292373338157660
 Animator:
   serializedVersion: 4

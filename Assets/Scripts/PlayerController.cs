@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
-    [SerializeField] private CheckpointManager _checkpointManager;
-    [SerializeField] private Camera _camera;
-    [SerializeField] private GameObject _maskProjectilePrefab;
+    [FormerlySerializedAs("_speed")] [SerializeField] private float speed = 5f;
+    [FormerlySerializedAs("_checkpointManager")] [SerializeField] private CheckpointManager checkpointManager;
+    [FormerlySerializedAs("_camera")] [SerializeField] private Camera mainCamera;
+    [FormerlySerializedAs("_maskProjectilePrefab")] [SerializeField] private GameObject maskProjectilePrefab;
 
     private Vector2 _moveValue;
     private Vector3 _lastCheckpoint;
+
+    private bool _canAttack = false;
+    private bool _canBoomerang = false;
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -26,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int Respawning = Animator.StringToHash("Respawning");
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,17 +39,17 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!_animator.GetBool(IsDead))
         {
-            transform.Translate(_moveValue * (Time.deltaTime * _speed));
+            transform.Translate(_moveValue * (Time.deltaTime * speed));
         } 
         else if (_animator.GetBool(Respawning))
         {
             // Move to the last checkpoint smoothly
             var position = transform.position;
-            position = Vector3.MoveTowards(position, _lastCheckpoint, Time.deltaTime * _speed * 5f);
+            position = Vector3.MoveTowards(position, _lastCheckpoint, Time.deltaTime * speed * 5f);
             transform.position = position;
 
             // Rotate the player to face the checkpoint
@@ -105,17 +109,9 @@ public class PlayerController : MonoBehaviour
     
     public void HandleAttack(InputAction.CallbackContext context)
     {
-        if (_maskProjectilePrefab == null) return;
+        if (!_canAttack) return;
         
-        if (context.performed)
-        {
-            //_spriteRenderer.color = Color.red;
-        }
-        else if (context.canceled)
-        {
-            //_spriteRenderer.color = Color.white;
-        }
-        else if (context.started)
+        if (context.started)
         {
             _animator.SetTrigger(Attack);
         }
@@ -131,7 +127,7 @@ public class PlayerController : MonoBehaviour
             // Disable the player collider
             _boxCollider2D.enabled = false;
             
-            _lastCheckpoint = _checkpointManager.GetLastCheckpoint();
+            _lastCheckpoint = checkpointManager.GetLastCheckpoint();
         }
     }
     
@@ -157,7 +153,7 @@ public class PlayerController : MonoBehaviour
         var position = transform.position;
 
         // Get mouse direction
-        var mousePosition = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        var mousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         var direction = mousePosition - position;
         
         // If the direction is to the left, flip the sprite
@@ -179,7 +175,7 @@ public class PlayerController : MonoBehaviour
         colliderPosition += position;
         
         // Create the projectile
-        var projectile = Instantiate(_maskProjectilePrefab, colliderPosition, Quaternion.identity);
+        var projectile = Instantiate(maskProjectilePrefab, colliderPosition, Quaternion.identity);
         
         // Get the angle of the mouse direction
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -189,5 +185,21 @@ public class PlayerController : MonoBehaviour
 
         projectile.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
         projectile.GetComponent<MaskProjectileController>().SetDirection(projectileDirection);
+
+        if (_canBoomerang)
+        {
+            // Add KeyFollower script on the projectile
+            projectile.AddComponent<KeyFollower>();
+        }
+    }
+
+    public void EnableAttack()
+    {
+        _canAttack = true;
+    }
+    
+    public void EnableBoomerang()
+    {
+        _canBoomerang = true;
     }
 }

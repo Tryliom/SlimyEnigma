@@ -8,6 +8,8 @@ TagManager:
   - Danger
   - Block
   - Projectile
+  - Key
+  - ActiveItem
   layers:
   - Default
   - TransparentFX
