@@ -29,8 +29,7 @@ public class KeyManipulator : MonoBehaviour
 
                 // Add offset based on the angle of the mouse
                 var offset = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-
-                //keyTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                
                 keyTransform.position = position + direction.normalized * 0.5f + offset * (1f + _ownedKeys.IndexOf(key) * 0.3f);
             }
             else

@@ -36,7 +36,7 @@ public class KeyFollower : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Key"))
+        if (col.CompareTag("Key") && !_ownedKeys.Contains(col.gameObject))
         {
             _ownedKeys.Add(col.gameObject);
         }
