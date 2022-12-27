@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e3c711c3aa2ad438ee87c1799393af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapToEnable: {fileID: 0}
   tilemapToDisable: {fileID: 0}
   enabledSprite: {fileID: 154650765, guid: 9f2eecd1f45048c4794a6fde27e2d0f1, type: 3}
+  disabledSprite: {fileID: 363835832, guid: 9f2eecd1f45048c4794a6fde27e2d0f1, type: 3}
 --- !u!212 &2368177989045519719
 SpriteRenderer:
   m_ObjectHideFlags: 0

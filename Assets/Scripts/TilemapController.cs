@@ -48,5 +48,6 @@ public class TilemapController : MonoBehaviour
         {
             _tilemapCollider2D.enabled = false;
         }
+        
     }
 }

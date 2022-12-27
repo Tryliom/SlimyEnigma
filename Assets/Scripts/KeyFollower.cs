@@ -11,7 +11,7 @@ public class KeyFollower : MonoBehaviour
     {
         var keysToDestroy = new List<GameObject>();
         
-        // For every key in the list, move the key at the direction of the mouse
+        // For every key in the list, move the key to the game object's position
         foreach (var key in _ownedKeys)
         {
             if (key != null)

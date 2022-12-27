@@ -5,9 +5,10 @@ using UnityEngine.Tilemaps;
 
 public class MechanismController : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemapToEnable;
     [SerializeField] private Tilemap tilemapToDisable;
+    [SerializeField] private Tilemap tilemapToEnable;
     [SerializeField] private Sprite enabledSprite;
+    [SerializeField] private Sprite disabledSprite;
     
     private SpriteRenderer _spriteRenderer;
 
@@ -21,13 +22,38 @@ public class MechanismController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.CompareTag("Player") || other.CompareTag("Projectile")) && !_isMechanismEnabled)
+        if ((other.CompareTag("Player") || other.CompareTag("Projectile")))
         {
-            tilemapToEnable.GetComponent<TilemapController>().EnableTilemap();
-            tilemapToDisable.GetComponent<TilemapController>().DisableTilemap();
-            
-            _spriteRenderer.sprite = enabledSprite;
-            _isMechanismEnabled = true;
+            if (!_isMechanismEnabled)
+            {
+                _isMechanismEnabled = true;
+                _spriteRenderer.sprite = enabledSprite;
+                
+                if (tilemapToDisable != null)
+                {
+                    tilemapToDisable.GetComponent<TilemapController>().DisableTilemap();
+                }
+                
+                if (tilemapToEnable != null)
+                {
+                    tilemapToEnable.GetComponent<TilemapController>().EnableTilemap();
+                }
+            }
+            else
+            {
+                _isMechanismEnabled = false;
+                _spriteRenderer.sprite = disabledSprite;
+                
+                if (tilemapToDisable != null)
+                {
+                    tilemapToDisable.GetComponent<TilemapController>().EnableTilemap();
+                }
+                
+                if (tilemapToEnable != null)
+                {
+                    tilemapToEnable.GetComponent<TilemapController>().DisableTilemap();
+                }
+            }
         }
     }
 }
