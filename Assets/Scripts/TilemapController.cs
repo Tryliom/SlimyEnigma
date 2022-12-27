@@ -48,6 +48,16 @@ public class TilemapController : MonoBehaviour
         {
             _tilemapCollider2D.enabled = false;
         }
+    }
+    
+    public void ToggleTilemap()
+    {
+        _tilemapRenderer.enabled = !_tilemapRenderer.enabled;
         
+        // If the TilemapCollider2D component exists, toggle it
+        if (_tilemapCollider2D != null)
+        {
+            _tilemapCollider2D.enabled = !_tilemapCollider2D.enabled;
+        }
     }
 }
