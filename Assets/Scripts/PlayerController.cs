@@ -10,13 +10,14 @@ public class PlayerController : MonoBehaviour
     [FormerlySerializedAs("_speed")] [SerializeField] private float speed = 5f;
     [FormerlySerializedAs("_checkpointManager")] [SerializeField] private CheckpointManager checkpointManager;
     [FormerlySerializedAs("_camera")] [SerializeField] private Camera mainCamera;
-    [FormerlySerializedAs("_maskProjectilePrefab")] [SerializeField] private GameObject maskProjectilePrefab;
+    [SerializeField] private GameObject firstAttackProjectile;
+    [SerializeField] private GameObject secondAttackProjectile;
 
     private Vector2 _moveValue;
     private Vector3 _lastCheckpoint;
 
-    private bool _canAttack = false;
-    private bool _canBoomerang = false;
+    private bool _unlockFirstAttack = false;
+    private bool _unlockSecondAttack = false;
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private static readonly int Walking = Animator.StringToHash("Walking");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int SecondAttack = Animator.StringToHash("SecondAttack");
     private static readonly int Dead = Animator.StringToHash("Dead");
     private static readonly int IsDead = Animator.StringToHash("IsDead");
     private static readonly int Respawning = Animator.StringToHash("Respawning");
@@ -105,13 +107,23 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void HandleAttack(InputAction.CallbackContext context)
+    public void HandleFirstAttack(InputAction.CallbackContext context)
     {
-        if (!_canAttack) return;
+        if (!_unlockFirstAttack) return;
         
         if (context.started)
         {
             _animator.SetTrigger(Attack);
+        }
+    }
+    
+    public void HandleSecondAttack(InputAction.CallbackContext context)
+    {
+        if (!_unlockSecondAttack) return;
+        
+        if (context.started)
+        {
+            _animator.SetTrigger(SecondAttack);
         }
     }
     
@@ -145,8 +157,18 @@ public class PlayerController : MonoBehaviour
         _boxCollider2D.enabled = true;
         transform.rotation = Quaternion.identity;
     }
+
+    public void UseFirstAttack()
+    {
+        LaunchAttack(false);
+    }
     
-    public void LaunchAttack()
+    public void UseSecondAttack()
+    {
+        LaunchAttack(true);
+    }
+    
+    private void LaunchAttack(bool secondAttack)
     {
         var position = transform.position;
 
@@ -173,7 +195,7 @@ public class PlayerController : MonoBehaviour
         colliderPosition += position;
         
         // Create the projectile
-        var projectile = Instantiate(maskProjectilePrefab, colliderPosition, Quaternion.identity);
+        var projectile = Instantiate(secondAttack ? secondAttackProjectile : firstAttackProjectile, colliderPosition, Quaternion.identity);
         
         // Get the angle of the mouse direction
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -183,21 +205,15 @@ public class PlayerController : MonoBehaviour
 
         projectile.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
         projectile.GetComponent<MaskProjectileController>().SetDirection(projectileDirection);
-
-        if (_canBoomerang)
-        {
-            // Add KeyFollower script on the projectile
-            projectile.AddComponent<KeyFollower>();
-        }
     }
 
     public void EnableAttack()
     {
-        _canAttack = true;
+        _unlockFirstAttack = true;
     }
     
     public void EnableBoomerang()
     {
-        _canBoomerang = true;
+        _unlockSecondAttack = true;
     }
 }

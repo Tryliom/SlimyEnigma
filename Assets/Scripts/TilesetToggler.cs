@@ -16,6 +16,4 @@ public class TilesetToggler : MonoBehaviour
             tilemapToToggle.GetComponent<TilemapController>().ToggleTilemap();
         }
     }
-    
-    
 }

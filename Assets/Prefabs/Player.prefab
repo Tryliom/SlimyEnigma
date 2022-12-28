@@ -83,7 +83,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6260298994667003066}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: HandleAttack
+        m_MethodName: HandleFirstAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

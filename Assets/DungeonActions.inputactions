@@ -15,13 +15,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "FirstAttack",
                     "type": "Button",
                     "id": "ba7584d3-5279-4da6-8497-faa5dd6b299d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SecondAttack",
+                    "type": "Button",
+                    "id": "508d198a-c2ed-4589-8439-1084779b9524",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -94,22 +103,44 @@
                 {
                     "name": "",
                     "id": "c1fc8393-064d-42f2-a51d-a221e1705627",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "FirstAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "715b1275-b91c-445f-a905-f198053d5ba8",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "FirstAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "766986c2-14fd-4466-9099-0192560da10d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d7f743c-c1bc-4f2a-a9f1-fa52e72f7329",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -16,6 +16,11 @@ public class Teleporter : MonoBehaviour
             teleportTarget.GetComponent<Teleporter>().DisableTeleport();
             
             collision.gameObject.transform.position = teleportTarget.transform.position;
+
+            if (collision.gameObject.CompareTag("Projectile"))
+            {
+                collision.gameObject.GetComponent<MaskProjectileController>().ResetLifeTime();
+            }
         }
     }
 

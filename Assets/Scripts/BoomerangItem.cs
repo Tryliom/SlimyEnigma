@@ -9,7 +9,6 @@ public class BoomerangItem : MonoBehaviour
         if (!col.gameObject.CompareTag("Player")) return;
         
         col.gameObject.GetComponent<PlayerController>().EnableBoomerang();
-        //TODO: Show message to player
         Destroy(gameObject);
     }
 }

@@ -10,7 +10,6 @@ public class MaskItem : MonoBehaviour
         if (!col.gameObject.CompareTag("Player")) return;
         
         col.gameObject.GetComponent<PlayerController>().EnableAttack();
-        //TODO: Show message to player
         Destroy(gameObject);
     }
 }
