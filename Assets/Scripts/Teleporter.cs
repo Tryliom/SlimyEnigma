@@ -11,7 +11,7 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsCollisionValid(collision) && _canTeleport)
+        if (IsCollisionValid(collision) && _canTeleport && teleportTarget != null)
         {
             teleportTarget.GetComponent<Teleporter>().DisableTeleport();
             
