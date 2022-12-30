@@ -8,9 +8,7 @@ public class MaskProjectileController : MonoBehaviour
     [FormerlySerializedAs("_speed")] [SerializeField] private float speed;
     [FormerlySerializedAs("_lifeTime")] [SerializeField] private float maxLifeTime;
     [SerializeField] private bool boomerang;
-    
-    private GameObject _player;
-    
+
     private Rigidbody2D _rb;
     private BoxCollider2D _collider;
     private Animator _animator;
@@ -61,11 +59,7 @@ public class MaskProjectileController : MonoBehaviour
             if (boomerang && !_isReturning)
             {
                 _isReturning = true;
-                
-                // Change direction to player
-                _direction = (_player.transform.position - transform.position).normalized;
-                //TODO: Improve directions
-                
+                _direction *= -1;
                 _lifeTime = maxLifeTime;
             }
             else
@@ -104,10 +98,5 @@ public class MaskProjectileController : MonoBehaviour
     public void ResetLifeTime()
     {
         _lifeTime = maxLifeTime;
-    }
-    
-    public void SetPlayer(GameObject player)
-    {
-        _player = player;
     }
 }

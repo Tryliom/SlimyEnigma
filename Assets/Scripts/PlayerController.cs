@@ -205,11 +205,6 @@ public class PlayerController : MonoBehaviour
 
         projectile.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
         projectile.GetComponent<MaskProjectileController>().SetDirection(projectileDirection);
-
-        if (secondAttack)
-        {
-            projectile.GetComponent<MaskProjectileController>().SetPlayer(gameObject);
-        }
     }
 
     public void EnableAttack()
