@@ -61,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8658334307838157463, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.92
+      value: 1.1354408
       objectReference: {fileID: 0}
     - target: {fileID: 8658334307838157463, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.87
+      value: -49.966187
       objectReference: {fileID: 0}
     - target: {fileID: 8658334307838157463, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9004503065530579876, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: m_Name
-      value: BoomerangItem Variant
+      value: BoomerangItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textToDisplay: The mask return to you and grab keys now
   displayTime: 2
-  textPrefab: {fileID: 0}
+  textPrefab: {fileID: 3433969191986581620, guid: 19fd53dd993a0a047a93bdf715792a86, type: 3}
 --- !u!114 &1068144788
 MonoBehaviour:
   m_ObjectHideFlags: 0
