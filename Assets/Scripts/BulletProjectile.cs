@@ -5,23 +5,16 @@ using UnityEngine;
 
 public class BulletProjectile : MonoBehaviour
 {
-    private Rigidbody2D _rb;
-
-    private void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Block"))
+        if (other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Projectile") || other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
     }
-    
+
     public void SetDirection(Vector2 direction)
     {
-        _rb.velocity = direction;
+        GetComponent<Rigidbody2D>().velocity = direction;
     }
 }

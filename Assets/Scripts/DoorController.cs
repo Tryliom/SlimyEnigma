@@ -29,4 +29,14 @@ public class DoorController : MonoBehaviour
             _isOpen = true;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (padlock == null && !_isOpen)
+        {
+            _spriteRenderer.sprite = openDoor;
+            _boxCollider2D.enabled = false;
+            _isOpen = true;
+        }
+    }
 }

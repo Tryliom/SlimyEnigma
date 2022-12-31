@@ -9,11 +9,11 @@ public class TilesetToggler : MonoBehaviour
     [SerializeField] private float timeDisabled = 1f;
     [SerializeField] private float timeBeforeStart;
     
-    private TilemapController tilemapController;
+    private TilemapController _tilemapController;
     
     private IEnumerator Start()
     {
-        tilemapController = GetComponent<TilemapController>();
+        _tilemapController = GetComponent<TilemapController>();
         
         yield return new WaitForSeconds(1f);
         
@@ -21,10 +21,10 @@ public class TilesetToggler : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBeforeStart);
             
-            tilemapController.ToggleTilemap();
+            _tilemapController.ToggleTilemap();
             yield return new WaitForSeconds(timeEnabled);
             
-            tilemapController.ToggleTilemap();
+            _tilemapController.ToggleTilemap();
             yield return new WaitForSeconds(timeDisabled);
         }
     }
