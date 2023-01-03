@@ -71,9 +71,16 @@ public class MaskProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Projectile")) && !_destroyed)
+        var bulletProjectile = other.GetComponent<BulletProjectile>();
+        
+        if ((other.gameObject.CompareTag("Block") || bulletProjectile != null) && !_destroyed)
         {
             StartDestroy();
+
+            if (bulletProjectile != null)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
     

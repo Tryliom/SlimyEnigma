@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class TilesetToggler : MonoBehaviour
 {
-    [SerializeField] private float timeEnabled = 1f;
-    [SerializeField] private float timeDisabled = 1f;
     [SerializeField] private float timeBeforeStart;
-    
+    [FormerlySerializedAs("timeEnabled")] [SerializeField] private float timeFirstToggled = 1f;
+    [FormerlySerializedAs("timeDisabled")] [SerializeField] private float timeSecondToggled = 1f;
+
     private TilemapController _tilemapController;
     
     private IEnumerator Start()
@@ -22,10 +23,10 @@ public class TilesetToggler : MonoBehaviour
             yield return new WaitForSeconds(timeBeforeStart);
             
             _tilemapController.ToggleTilemap();
-            yield return new WaitForSeconds(timeEnabled);
+            yield return new WaitForSeconds(timeFirstToggled);
             
             _tilemapController.ToggleTilemap();
-            yield return new WaitForSeconds(timeDisabled);
+            yield return new WaitForSeconds(timeSecondToggled);
         }
     }
 }

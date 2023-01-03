@@ -7,7 +7,7 @@ public class BulletProjectile : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Projectile") || other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }

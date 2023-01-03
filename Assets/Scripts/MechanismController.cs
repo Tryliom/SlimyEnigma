@@ -9,6 +9,7 @@ public class MechanismController : MonoBehaviour
     [SerializeField] private Tilemap tilemapToEnable;
     [SerializeField] private Sprite enabledSprite;
     [SerializeField] private Sprite disabledSprite;
+    [SerializeField] private List<Tilemap> tilemapsToToggle;
     
     private SpriteRenderer _spriteRenderer;
 
@@ -52,6 +53,14 @@ public class MechanismController : MonoBehaviour
                 if (tilemapToEnable != null)
                 {
                     tilemapToEnable.GetComponent<TilemapController>().DisableTilemap();
+                }
+            }
+            
+            if (tilemapsToToggle.Count > 0)
+            {
+                foreach (var tilemap in tilemapsToToggle)
+                {
+                    tilemap.GetComponent<TilemapController>().ToggleTilemap();
                 }
             }
         }
