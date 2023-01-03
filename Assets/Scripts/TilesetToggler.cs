@@ -9,24 +9,37 @@ public class TilesetToggler : MonoBehaviour
     [SerializeField] private float timeBeforeStart;
     [FormerlySerializedAs("timeEnabled")] [SerializeField] private float timeFirstToggled = 1f;
     [FormerlySerializedAs("timeDisabled")] [SerializeField] private float timeSecondToggled = 1f;
+    [SerializeField] private bool workAlone = false;
 
     private TilemapController _tilemapController;
     
     private IEnumerator Start()
     {
         _tilemapController = GetComponent<TilemapController>();
-        
-        yield return new WaitForSeconds(1f);
-        
-        while (true)
+
+        if (workAlone)
         {
-            yield return new WaitForSeconds(timeBeforeStart);
+            while (true)
+            {
+                yield return new WaitForSeconds(timeBeforeStart);
             
-            _tilemapController.ToggleTilemap();
-            yield return new WaitForSeconds(timeFirstToggled);
+                _tilemapController.ToggleTilemap();
+                yield return new WaitForSeconds(timeFirstToggled);
             
-            _tilemapController.ToggleTilemap();
-            yield return new WaitForSeconds(timeSecondToggled);
+                _tilemapController.ToggleTilemap();
+                yield return new WaitForSeconds(timeSecondToggled);
+            }
         }
+    }
+    
+    public IEnumerator StartToggling()
+    {
+        yield return new WaitForSeconds(timeBeforeStart);
+            
+        _tilemapController.ToggleTilemap();
+        yield return new WaitForSeconds(timeFirstToggled);
+            
+        _tilemapController.ToggleTilemap();
+        yield return new WaitForSeconds(timeSecondToggled);
     }
 }
