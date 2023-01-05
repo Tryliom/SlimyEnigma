@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,7 +22,15 @@ public class ActiveItemController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
-    
+
+    private void Update()
+    {
+        if (_destroyed)
+        {
+            transform.Translate(0, 1f * Time.deltaTime, 0);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.gameObject.CompareTag("Player") || _destroyed) return;
@@ -38,7 +47,7 @@ public class ActiveItemController : MonoBehaviour
         
         StartDestroy();
     }
-    
+
     private void StartDestroy()
     {
         _animator.SetTrigger(PickedUp);

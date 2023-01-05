@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [FormerlySerializedAs("_camera")] [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject firstAttackProjectile;
     [SerializeField] private GameObject secondAttackProjectile;
+    [SerializeField] private GameObject attackDirection;
 
     private Vector2 _moveValue;
     private Vector3 _lastCheckpoint;
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        
+        attackDirection.GetComponent<AttackDirection>().HideAttackDirection();
+        
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -111,7 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_unlockFirstAttack) return;
         
-        if (context.started)
+        if (context.performed)
         {
             _animator.SetTrigger(Attack);
         }
@@ -121,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!_unlockSecondAttack) return;
         
-        if (context.started)
+        if (context.performed)
         {
             _animator.SetTrigger(SecondAttack);
         }
@@ -146,6 +151,7 @@ public class PlayerController : MonoBehaviour
         if (_animator.GetBool(IsDead))
         {
             _animator.SetBool(Respawning, true);
+            attackDirection.GetComponent<AttackDirection>().HideAttackDirection();
         }
     }
     
@@ -156,6 +162,8 @@ public class PlayerController : MonoBehaviour
         
         _boxCollider2D.enabled = true;
         transform.rotation = Quaternion.identity;
+        
+        attackDirection.GetComponent<AttackDirection>().ShowAttackDirection();
     }
 
     public void UseFirstAttack()
@@ -173,8 +181,8 @@ public class PlayerController : MonoBehaviour
         var position = transform.position;
 
         // Get mouse direction
-        var mousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        var direction = mousePosition - position;
+        var attackPosition = attackDirection.transform.position;
+        var direction = attackPosition - position;
         
         // If the direction is to the left, flip the sprite
         if (direction.x < 0)
@@ -210,6 +218,8 @@ public class PlayerController : MonoBehaviour
     public void EnableAttack()
     {
         _unlockFirstAttack = true;
+        
+        attackDirection.GetComponent<AttackDirection>().ShowAttackDirection();
     }
     
     public void EnableBoomerang()

@@ -6,10 +6,19 @@ using UnityEngine.InputSystem;
 
 public class KeyManipulator : MonoBehaviour
 {
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject attackDirection;
 
     private readonly List<GameObject> _ownedKeys = new List<GameObject>();
+    
+    private AttackDirection _attackDirection;
+    private PlayerController _playerController;
 
+    private void Start()
+    {
+        _attackDirection = attackDirection.GetComponent<AttackDirection>();
+        _playerController = GetComponent<PlayerController>();
+    }
+    
     // Update is called once per frame
     private void Update()
     {
@@ -20,17 +29,14 @@ public class KeyManipulator : MonoBehaviour
         {
             if (key != null)
             {
-                var mousePosition = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                var position = transform.position;
-                var direction = mousePosition - position;
                 // Get the angle offset based on how many keys are in the list
-                var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                var angle = _attackDirection.GetAngle();
                 var keyTransform = key.transform;
 
                 // Add offset based on the angle of the mouse
                 var offset = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
                 
-                keyTransform.position = position + direction.normalized * 0.5f + offset * (1f + _ownedKeys.IndexOf(key) * 0.3f);
+                keyTransform.position = _playerController.transform.position + offset * (1f + _ownedKeys.IndexOf(key) * 0.3f);
             }
             else
             {

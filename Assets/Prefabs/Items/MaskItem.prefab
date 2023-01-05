@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766047086604955528, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: text
-      value: Left click to activate interruptors with attack
+      value: Left click/trigger to activate interruptors with attack
       objectReference: {fileID: 0}
     - target: {fileID: 5766047086604955528, guid: dc8533716d6f7ca45b45083429b26b18, type: 3}
       propertyPath: enableFirstAttack
