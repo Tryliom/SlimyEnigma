@@ -6,7 +6,15 @@ using UnityEngine;
 public class LockController : MonoBehaviour
 {
     [SerializeField] private GameObject key;
+    [SerializeField] private AudioClip unlockSound;
 
+    private AudioSource _audioSource;
+    
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+    
     private void Update()
     {
         // Rotate the key in the direction of the lock
@@ -26,7 +34,9 @@ public class LockController : MonoBehaviour
     {
         if (col.gameObject == key)
         {
-            Destroy(gameObject);
+            _audioSource.PlayOneShot(unlockSound);
+            
+            Destroy(gameObject, unlockSound.length);
             Destroy(key);
         }
     }

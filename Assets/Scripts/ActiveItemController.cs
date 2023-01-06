@@ -11,8 +11,10 @@ public class ActiveItemController : MonoBehaviour
     [SerializeField] private float timeDisplayed = 2f;
     [SerializeField] private bool enableFirstAttack = false;
     [SerializeField] private bool enableSecondAttack = false;
+    [SerializeField] private AudioClip pickItemSound;
     
     private Animator _animator;
+    private AudioSource _audioSource;
     
     private bool _destroyed = false;
     
@@ -21,6 +23,7 @@ public class ActiveItemController : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class ActiveItemController : MonoBehaviour
     {
         _animator.SetTrigger(PickedUp);
         _destroyed = true;
+        _audioSource.PlayOneShot(pickItemSound);
     }
 
     public void Destroy()

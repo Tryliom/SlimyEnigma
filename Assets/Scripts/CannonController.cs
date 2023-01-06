@@ -9,13 +9,16 @@ public class CannonController : MonoBehaviour
     [SerializeField] private float cannonBallSpeed;
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private GameObject target;
+    [SerializeField] private List<AudioClip> cannonShootSound;
 
     private Transform _transform;
+    private AudioSource _audioSource;
     
     // Start is called before the first frame update
     void Start()
     {
         _transform = GetComponent<Transform>();
+        _audioSource = GetComponent<AudioSource>();
         
         StartCoroutine(Shoot());
     }
@@ -39,6 +42,8 @@ public class CannonController : MonoBehaviour
         {
             var cannonBallInstance = Instantiate(cannonBall, cannonBallSpawn.position, cannonBallSpawn.rotation);
             cannonBallInstance.GetComponent<BulletProjectile>().SetDirection(GetShootDirection() * cannonBallSpeed);
+            
+            _audioSource.PlayOneShot(cannonShootSound[Random.Range(0, cannonShootSound.Count)]);
 
             yield return new WaitForSeconds(timeBetweenShots);
         }

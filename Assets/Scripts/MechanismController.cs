@@ -14,8 +14,10 @@ public class MechanismController : MonoBehaviour
     [SerializeField] private Sprite disabledSpriteOneTime;
     [SerializeField] private bool oneTimeUse = false;
     [SerializeField] private List<Tilemap> tilemapsToToggle;
+    [SerializeField] private AudioClip activatorSound;
 
     private SpriteRenderer _spriteRenderer;
+    private AudioSource _audioSource;
 
     private bool _isMechanismEnabled = false;
 
@@ -23,6 +25,7 @@ public class MechanismController : MonoBehaviour
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (oneTimeUse)
         {
@@ -83,5 +86,7 @@ public class MechanismController : MonoBehaviour
                 }
             }
         }
+        
+        _audioSource.PlayOneShot(activatorSound);
     }
 }

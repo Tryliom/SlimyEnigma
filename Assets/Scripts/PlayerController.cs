@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider2D;
+    private PlayerSoundController _playerSoundController;
 
     private static readonly int Walking = Animator.StringToHash("Walking");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -37,10 +39,13 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        _playerSoundController = GetComponent<PlayerSoundController>();
         
         attackDirection.GetComponent<AttackDirection>().HideAttackDirection();
         
         Cursor.visible = false;
+        
+        _playerSoundController.PlayPlayerSpawnSound();
     }
 
     // Update is called once per frame
@@ -80,6 +85,15 @@ public class PlayerController : MonoBehaviour
         if (col.CompareTag("Danger") && !_animator.GetBool(IsDead))
         {
             Die();
+
+            if (col.GetComponent<BulletProjectile>())
+            {
+                _playerSoundController.PlayPlayerDeathBulletSound();
+            }
+            else
+            {
+                _playerSoundController.PlayPlayerDeathLavaSound();
+            }
         }
     }
 
@@ -152,6 +166,7 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool(Respawning, true);
             attackDirection.GetComponent<AttackDirection>().HideAttackDirection();
+            _playerSoundController.PlayPlayerRespawningSound();
         }
     }
     
@@ -163,7 +178,12 @@ public class PlayerController : MonoBehaviour
         _boxCollider2D.enabled = true;
         transform.rotation = Quaternion.identity;
         
-        attackDirection.GetComponent<AttackDirection>().ShowAttackDirection();
+        if (_unlockFirstAttack)
+        {
+            attackDirection.GetComponent<AttackDirection>().ShowAttackDirection();
+        }
+        
+        _playerSoundController.PlayPlayerSpawnSound();
     }
 
     public void UseFirstAttack()
@@ -201,6 +221,7 @@ public class PlayerController : MonoBehaviour
         colliderPosition += new Vector3(colliderSize.x / 2f, colliderSize.y / 2f, 0f);
         colliderPosition *= _spriteRenderer.flipX ? -1f : 1f;
         colliderPosition += position;
+        colliderPosition.z = 0f;
         
         // Create the projectile
         var projectile = Instantiate(secondAttack ? secondAttackProjectile : firstAttackProjectile, colliderPosition, Quaternion.identity);
@@ -213,6 +234,8 @@ public class PlayerController : MonoBehaviour
 
         projectile.transform.rotation = Quaternion.AngleAxis(angle - 180f, Vector3.forward);
         projectile.GetComponent<MaskProjectileController>().SetDirection(projectileDirection);
+        
+        _playerSoundController.PlayPlayerAttackSound();
     }
 
     public void EnableAttack()

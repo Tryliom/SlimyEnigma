@@ -8,7 +8,9 @@ public class Checkpoint : MonoBehaviour
 {
     [SerializeField] private Sprite _enabledSprite;
     [SerializeField] private Sprite _disabledSprite;
+    [SerializeField] private AudioClip takeSound;
 
+    private AudioSource _audioSource;
     private CheckpointManager _checkpointManager;
     private SpriteRenderer _spriteRenderer;
     
@@ -19,6 +21,7 @@ public class Checkpoint : MonoBehaviour
     {
         _checkpointManager = GetComponentInParent<CheckpointManager>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         _isCheckpointActive = false;
     }
 
@@ -27,6 +30,8 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player") && !_isCheckpointActive)
         {
             _checkpointManager.SetLastCheckpoint(transform);
+            
+            _audioSource.PlayOneShot(takeSound);
         }
     }
 

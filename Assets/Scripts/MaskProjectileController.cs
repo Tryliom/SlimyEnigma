@@ -8,12 +8,14 @@ public class MaskProjectileController : MonoBehaviour
     [FormerlySerializedAs("_speed")] [SerializeField] private float speed;
     [FormerlySerializedAs("_lifeTime")] [SerializeField] private float maxLifeTime;
     [SerializeField] private bool boomerang;
+    [SerializeField] private List<AudioClip> maskBreakSound;
 
     private Rigidbody2D _rb;
     private BoxCollider2D _collider;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-    
+    private AudioSource _audioSource;
+
     private Vector2 _direction;
     private bool _destroyed;
     private bool _isReturning;
@@ -28,6 +30,7 @@ public class MaskProjectileController : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         
         _lifeTime = maxLifeTime;
         _isReturning = false;
@@ -90,6 +93,8 @@ public class MaskProjectileController : MonoBehaviour
         _destroyed = true;
         _rb.velocity *= 0.2f;
         _collider.enabled = false;
+        
+        _audioSource.PlayOneShot(maskBreakSound[Random.Range(0, maskBreakSound.Count)]);
     }
 
     public void Destroy()

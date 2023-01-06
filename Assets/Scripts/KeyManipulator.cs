@@ -12,11 +12,13 @@ public class KeyManipulator : MonoBehaviour
     
     private AttackDirection _attackDirection;
     private PlayerController _playerController;
+    private PlayerSoundController _playerSoundController;
 
     private void Start()
     {
         _attackDirection = attackDirection.GetComponent<AttackDirection>();
         _playerController = GetComponent<PlayerController>();
+        _playerSoundController = GetComponent<PlayerSoundController>();
     }
     
     // Update is called once per frame
@@ -56,6 +58,8 @@ public class KeyManipulator : MonoBehaviour
         if (col.CompareTag("Key") && !_ownedKeys.Contains(col.gameObject))
         {
             _ownedKeys.Add(col.gameObject);
+            
+            _playerSoundController.PlayKeySound();
         }
     }
 }
