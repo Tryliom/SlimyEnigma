@@ -44,8 +44,6 @@ public class PlayerController : MonoBehaviour
         attackDirection.GetComponent<AttackDirection>().HideAttackDirection();
         
         Cursor.visible = false;
-        
-        _playerSoundController.PlayPlayerSpawnSound();
     }
 
     // Update is called once per frame

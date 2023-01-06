@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textPrefab: {fileID: 3433969191986581620, guid: 19fd53dd993a0a047a93bdf715792a86, type: 3}
   text: 
-  timeDisplayed: 3
+  timeDisplayed: 5
   enableFirstAttack: 0
   enableSecondAttack: 0
   pickItemSound: {fileID: 8300000, guid: 0071953cc53cd7241ba95e3c06dbd7e6, type: 3}

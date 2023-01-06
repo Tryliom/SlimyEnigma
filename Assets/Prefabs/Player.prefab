@@ -261,7 +261,6 @@ MonoBehaviour:
   playerRespawningSound: {fileID: 8300000, guid: bc8373070ebfa794187ed1e59d8e5609, type: 3}
   playerSpawnSound: {fileID: 8300000, guid: 21aeb5f9f409c2045a08e6a2efbb1e46, type: 3}
   keySound: {fileID: 8300000, guid: b795532fb07bfc44a993a158e625ceae, type: 3}
-  unlockSound: {fileID: 8300000, guid: dc74c5fc981719e4c9712448fda49338, type: 3}
 --- !u!61 &5134283270087528752
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -488,7 +487,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 70cdeae5a59a6814aae9d2c5bad41aed, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
