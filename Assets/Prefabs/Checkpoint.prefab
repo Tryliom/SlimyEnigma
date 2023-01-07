@@ -102,6 +102,8 @@ MonoBehaviour:
   _enabledSprite: {fileID: -119672627, guid: f744db897e349f842bc1e49accac10e2, type: 3}
   _disabledSprite: {fileID: 1797364330, guid: f744db897e349f842bc1e49accac10e2, type: 3}
   takeSound: {fileID: 8300000, guid: 0071953cc53cd7241ba95e3c06dbd7e6, type: 3}
+  chronoController: {fileID: 7812028370876485791, guid: d5759594695ccff4d96ed533a787d79b, type: 3}
+  stopChrono: 0
 --- !u!61 &3538661029000720049
 BoxCollider2D:
   m_ObjectHideFlags: 0

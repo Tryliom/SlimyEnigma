@@ -102,6 +102,8 @@ MonoBehaviour:
   padlock: {fileID: 0}
   openDoor: {fileID: -1254773711, guid: 9f2eecd1f45048c4794a6fde27e2d0f1, type: 3}
   doorSound: {fileID: 8300000, guid: 3335c1db221e1d6498bd6bb44906f8ab, type: 3}
+  chronoController: {fileID: 7812028370876485791, guid: d5759594695ccff4d96ed533a787d79b, type: 3}
+  stopChrono: 0
 --- !u!61 &4330736321757199848
 BoxCollider2D:
   m_ObjectHideFlags: 0

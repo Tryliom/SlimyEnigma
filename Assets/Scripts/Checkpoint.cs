@@ -10,6 +10,9 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private Sprite _disabledSprite;
     [SerializeField] private AudioClip takeSound;
 
+    [SerializeField] private GameObject chronoController;
+    [SerializeField] private Room roomToStart = Room.None;
+
     private AudioSource _audioSource;
     private CheckpointManager _checkpointManager;
     private SpriteRenderer _spriteRenderer;
@@ -32,6 +35,11 @@ public class Checkpoint : MonoBehaviour
             _checkpointManager.SetLastCheckpoint(transform);
             
             _audioSource.PlayOneShot(takeSound);
+            
+            if (chronoController != null && roomToStart != Room.None)
+            {
+                chronoController.GetComponent<ChronoController>().StartChrono(roomToStart);
+            }
         }
     }
 

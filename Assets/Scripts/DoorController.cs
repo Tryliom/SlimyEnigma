@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -9,6 +10,9 @@ public class DoorController : MonoBehaviour
     [SerializeField] private Sprite openDoor;
     [SerializeField] private AudioClip doorSound;
     
+    [SerializeField] private GameObject chronoController;
+    [SerializeField] private bool stopChrono;
+
     private bool _isOpen = false;
     
     private SpriteRenderer _spriteRenderer;
@@ -42,6 +46,11 @@ public class DoorController : MonoBehaviour
             _isOpen = true;
             
             _audioSource.PlayOneShot(doorSound);
+            
+            if (stopChrono)
+            {
+                chronoController.GetComponent<ChronoController>().StopChrono();
+            }
         }
     }
 }
